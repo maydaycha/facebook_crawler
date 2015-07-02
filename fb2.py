@@ -90,10 +90,10 @@ def get_comments(comments_obj, file_name):
                 json_obj = json.loads(r.text)
                 comments = json_obj['data']
 
-                if 'next' in json_obj['paging']:
-                    next_comments_url = json_obj['paging']['next']
-                else:
-                    next_comments_url = ''
+                next_comments_url = ''
+                if 'paging' in json_obj:
+                    if 'next' in json_obj['paging']:
+                        next_comments_url = json_obj['paging']['next']
 
         for comment in comments:
             # print json.dumps(comment, ensure_ascii=False)

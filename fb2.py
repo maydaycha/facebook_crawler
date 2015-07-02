@@ -48,7 +48,7 @@ def get_comments(comments_obj, file_name):
     headers = ('commenter_id', 'commenter_name', 'commenter_message', 'commenter_message_created_time', 'replier_id', 'replier_name', 'replier_message', 'replier_message_created_time')
 
 
-    csv_file = open(_specified_post_id + '.xls', 'wb')
+
 
     data = []
 
@@ -182,8 +182,21 @@ def get_comments(comments_obj, file_name):
     # file.write(json.dumps(feeds, ensure_ascii=False))
 
     data = tablib.Dataset(*data, headers=headers)
-    csv_file.write(data.xls)
+
+    xls_file = open(_specified_post_id + '.xls', 'wb')
+    csv_file = open(_specified_post_id + '.csv', 'wb')
+    json_file = open(_specified_post_id + '.json', 'wb')
+
+    xls_file.write(data.xls)
+    xls_file.close()
+
+    csv_file.write(data.csv)
     csv_file.close()
+
+    json_file.write(data.json)
+    json_file.close()
+
+
 
 
 

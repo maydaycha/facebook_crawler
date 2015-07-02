@@ -27,12 +27,13 @@ graph = facebook.GraphAPI(access_token=access_token, version='2.2')
 
 
 # _fan_page_id = "283092135094363"
-_fan_page_id = "652438848137404"
+_fan_page_id = "652438848137404"  # 連勝文
+
 try:
     _feeds = graph.get_connections(id=_fan_page_id, connection_name='feed')
 except:
     get_feeds_successfully = False
-    while not get_feeds_successfully
+    while not get_feeds_successfully:
         _feeds = graph.get_connections(id=_fan_page_id, connection_name='feed')
         if 'data' in _feeds:
             get_feeds_successfully = True
@@ -99,7 +100,7 @@ def get_comments(feeds, file_name):
                     # self.writer.writerow([unicode(s).encode("utf-8") for s in row])
                     print 'commenter_name: %s' % commenter_name
                     # csv_writer.writerow({'commenter_id': '', 'commenter_name': commenter_name, 'commenter_message': '', 'commenter_message_created_time': '', 'replier_id': '', 'replier_name': '', 'replier_message': '', 'replier_message_created_time': ''})
-                    data.append(('', commenter_name, '', '', '', '', '', ''))
+                    data.append((commenter_id, commenter_name, commenter_message, commenter_message_created_time, '', '', '', ''))
 
 
                     #check whether has replies or not
@@ -145,7 +146,7 @@ def get_comments(feeds, file_name):
                             replier_message = json.dumps(reply['message'], ensure_ascii=False)
                             replier_message_created_time = json.dumps(reply['created_time'], ensure_ascii=False)
                             # csv_writer.writerow({'replier_name': replier_name})
-                            data.append(('', '', '', '', '', replier_name, '', ''))
+                            data.append(('', '', '', '', replier_id, replier_name, replier_message, replier_message_created_time))
 
                             print "=============== reply data ============="
                             print json.dumps(reply, ensure_ascii=False)

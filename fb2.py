@@ -56,9 +56,9 @@ def get_comments(comments_obj, file_name):
 
     print "Got comment!"
     # need to get reply if exist
-    print "@@@@@@@@@@@@@@@@"
-    print json.dumps(comments_obj, ensure_ascii=False)
-    print "@@@@@@@@@@@@@@@@"
+    #print "@@@@@@@@@@@@@@@@"
+    #print json.dumps(comments_obj, ensure_ascii=False)
+    #print "@@@@@@@@@@@@@@@@"
 
     next_comments_url = ""
 
@@ -122,8 +122,8 @@ def get_comments(comments_obj, file_name):
                     if 'data' in r:
                         get_comments_successfully = True
 
-            print "Get replies data:"
-            print json.dumps(r, ensure_ascii=False)
+            #print "Get replies data:"
+            #print json.dumps(r, ensure_ascii=False)
 
             next_replies_url = ''
             if 'paging' in r:
@@ -163,9 +163,9 @@ def get_comments(comments_obj, file_name):
                     # csv_writer.writerow({'replier_name': replier_name})
                     data.append(('', '', '', '', replier_id, replier_name, replier_message, replier_message_created_time))
 
-                    print "=============== reply data ============="
-                    print json.dumps(reply, ensure_ascii=False)
-                    print "=============== reply data ============="
+                 #   print "=============== reply data ============="
+                  #  print json.dumps(reply, ensure_ascii=False)
+                   # print "=============== reply data ============="
 
                 if next_replies_url == '':
                     break
@@ -196,6 +196,10 @@ def get_comments(comments_obj, file_name):
     json_file.write(data.json)
     json_file.close()
 
+    print "------------ end -----------"
+
+
+    print data.csv
 
 
 
